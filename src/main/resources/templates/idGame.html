@@ -1,0 +1,38 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Traitement</title>
+    <ul> 
+        <li><a href="/" >Home </a></li>
+            <li><a href="/form" >Research</a></li>
+            <li><a href="/about" >About</a></li>
+    </ul>
+
+    <link type="text/css" rel="stylesheet" href="stylesheet.css">
+
+</head>
+<body>
+	<h1>Information about the Game</h1>
+	<div class="main-text">
+<h2>Name:</h2>
+<p><td th:text="${game.name}"></td></p>
+<h2>Genre:</h2>
+	<tr th:each="genre : ${game.genre}">
+        <p> <a th:href="@{/gamelist(genre=${genre})}"> <td th:text="${genre}"></td> </a></p>        
+	</tr>
+<h2>Platform:</h2>
+	<tr th:each="platform : ${game.platform}">
+        <p> <a th:href="@{/gamelist(platform=${platform})}"> <td th:text="${platform}"></td> </a></p>        
+	</tr>
+<h2>Publisher:</h2>
+	<tr th:each="publisher : ${game.publisher}">
+        <p> <a th:href="@{/gamelist(publisher=${publisher})}"> <td th:text="${publisher}"></td> </a></p>        
+	</tr>
+
+
+</div>
+
+
+</body>
+</html> 

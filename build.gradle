@@ -1,0 +1,72 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+
+
+configurations {
+  developmentOnly
+  runtimeClasspath {
+    extendsFrom developmentOnly
+  }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.apache.jena:jena-core:3.17.0'
+	implementation 'org.apache.jena:jena-arq:3.17.0'
+	runtimeOnly 'com.h2database:h2'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' 
+	}
+}
+
+test {
+	useJUnitPlatform()
+
+	 // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+task distclean {
+  doLast {
+  	 delete "bin"
+	 delete ".classpath"
+ 	 delete ".vscode"
+ 	 delete ".settings"
+ 	 delete ".project"
+ 	 delete ".idea"
+ 	 delete ".nb-gradle"	 
+  }
+}
+
+task zip(type: Zip) { 
+	archiveName = "tp-note.zip"
+	into("tp-note")
+    from( "${projectDir}" ) { 
+		 include "src/**"
+         include "build.gradle" 
+         include "settings.gradle"
+		 include "gradlew"
+		 include "gradlew.bat"
+		 include "gradle/**"
+		 include "README.md"
+
+     } 
+
+} 

@@ -1,0 +1,30 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Game list</title>
+    <ul> 
+        <li><a href="/" >Home </a></li>
+            <li><a href="/form" >Research</a></li>
+            <li><a href="/about" >About</a></li>
+    </ul>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<div class="main-text">
+<h2>Game list</h2>
+
+ <div th:if="${not #lists.isEmpty(games)}">
+        <tr th:each="game : ${games}">
+        	<p><a th:href="@{/gameview(url=${game.url})}"> <td th:text="${game.name}"></td> </a></p>
+            
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+
+
+</body>
+</html> 
